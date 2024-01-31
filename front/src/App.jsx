@@ -13,18 +13,18 @@ axios.defaults.baseURL = 'https://rick-and-morty-production-2f46.up.railway.app/
 
 
 function App() {
-  
+ 
   
    const [characters, setCharacters] = useState([]);
 
    const [access, setAccess] = useState (false);
    const [showLoading, setShowLoading] = useState(false);
-   const baseURL = axios.defaults.baseURL
+
    const login = async (userData) => {
      try {
        setShowLoading(true);
        const { email, password } = userData;
-       const URL = baseURL + '/rickandmorty/login/';
+       const URL = 'https://rick-and-morty-production-2f46.up.railway.app/rickandmorty/login/';
        const response = await axios(URL + `?email=${email}&password=${password}`);
        const data = response.data;
        const { access } = data;
@@ -50,7 +50,7 @@ const navigate = useNavigate()
 
    const onSearch = async (id)=> {
       try {
-         const URL = baseURL + `/rickandmorty/character/${id}`
+         const URL = `https://rick-and-morty-production-2f46.up.railway.app/rickandmorty/character/${id}`
          const response = await axios(URL);
          const { data } = response;
 
