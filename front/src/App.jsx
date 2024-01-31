@@ -10,7 +10,6 @@ import Form from './components/Form/Form';
 import Favorites from './components/Favorites/Favorites';
 import loading from "../src/assets/rnmIcon.png"
 import style from "./App.css"
-import axios from 'axios'
 axios.defaults.baseURL = 'http://localhost:3001/'
 
 
