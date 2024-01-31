@@ -25,8 +25,13 @@ server.use((req, res, next) => {
 });
 server.use("/rickandmorty", router)
 
-conn.sync({force: true})
-
-server.listen(PORT, () => {
-   console.log('Server raised in port: ' + PORT);
-});
+conn.sync()
+  .then(() => {
+    console.log('Database synced successfully.');
+    server.listen(PORT, () => {
+      console.log('Server raised in port: ' + PORT);
+    });
+  })
+  .catch((error) => {
+    console.error('Error syncing database:', error);
+  });

@@ -24,7 +24,7 @@ function App() {
      try {
        setShowLoading(true);
        const { email, password } = userData;
-       const URL = 'https://rick-and-morty-production-2f46.up.railway.app/rickandmorty/login/';
+       const URL = 'rickandmorty/login/';
        const response = await axios(URL + `?email=${email}&password=${password}`);
        const data = response.data;
        const { access } = data;
@@ -50,7 +50,7 @@ const navigate = useNavigate()
 
    const onSearch = async (id)=> {
       try {
-         const URL = `https://rick-and-morty-production-2f46.up.railway.app/rickandmorty/character/${id}`
+         const URL = `rickandmorty/character/${id}`
          const response = await axios(URL);
          const { data } = response;
 
