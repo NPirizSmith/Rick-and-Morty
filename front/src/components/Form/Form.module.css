@@ -1,0 +1,182 @@
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background: url("../../assets/rnmBackground.png");
+     background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center;
+
+  }
+  
+  
+  .loginContainer {
+    position: relative;
+    width: 22.2rem;
+}
+
+.loginContainer .logo{
+    left: 50px;
+    right: 0;
+    top: -50px;
+    position: absolute;
+    z-index: -1;
+    width: 80%;
+}
+
+.formContainer {
+    border: 2px solid hsla(0, 0%, 0%, 0.897);
+    box-shadow: 0 0 36px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: #282340;
+    backdrop-filter: blur(10px);
+
+    padding: 2rem;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.loginContainer form label {
+    color: black;
+    font-size: 25px;
+    color: aliceblue;
+}
+
+.loginContainer form input {
+    display: block;
+    padding: 14px;
+    width: 90%;
+    margin: 1rem 0;
+    color: var(--color);
+    outline: none;
+    background-color: #89cea89f;
+    border: 2px solid hsla(0, 0%, 0%, 0.897);
+    border-radius: 40px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    font-size: 15px;
+    backdrop-filter: blur(15px);
+
+}
+
+
+.loginContainer form button {
+     background-color: #89cea89f;
+    color: aliceblue; 
+     display: block; 
+    padding: 13px;
+    border-radius: 5px;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    width: 100%;
+    border: none;
+    margin-bottom: 2rem;
+
+} 
+
+.login-container form button:hover {
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    -o-transform: scale(1.02);
+}
+
+.formImg {
+    z-index: -1;
+        position: absolute;
+        top: -20%;
+        right: -220px;
+        width: 260%;
+
+}
+
+.errorText {
+    color: rgb(255, 255, 255); 
+    font-size: 14px; 
+    margin-top: 5px; 
+    font-weight: 600;
+  }
+
+  @media (max-width: 767px) {
+    .formImg {
+        top: 0px;
+        width: 180%;
+        right: -100px;
+        z-index: -1;
+    }
+
+    .loginContainer .logo {
+        left: 85px;
+        top: -30px;
+        width: 60%;
+        
+    }
+
+    .loginContainer form {
+        padding: 1rem;
+    }
+
+    .loginContainer form label {
+        font-size: 20px;
+    }
+
+    .loginContainer form input {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .loginContainer form button {
+        padding: 10px; 
+        font-size: 16px; 
+        margin-bottom: 1rem; 
+    }
+}
+
+@media (max-width: 479px) {
+    .formImg {
+        top: 60px;
+        width: 140%;
+        right: -35px;
+        z-index: -1;
+    }
+
+    .formContainer{
+        width: 70%;
+        display: inline-block;
+    }
+
+    .loginContainer .logo {
+        left: 90px; 
+        top: -20px; 
+        width: 50%;
+    }
+
+    .loginContainer form {
+        padding: 1rem;
+    }
+
+    .loginContainer form label {
+        font-size: 18px;
+    }
+
+    .loginContainer form input {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .loginContainer form button {
+        padding: 10px;
+        font-size: 14px;
+        margin-bottom: 1rem;
+    }
+}

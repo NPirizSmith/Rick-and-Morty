@@ -1,0 +1,143 @@
+.nav {
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999;
+}
+
+  .navButtons {
+    z-index: 1;
+  }
+  
+
+  
+ .searchBar {
+    background-color: #34495e83;
+    display:flex;
+    justify-content: center;
+    padding: 10px;
+    position:fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;  
+    border-bottom: 2px solid #000000;
+  }
+
+  .rnmIcon {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 10px; 
+    z-index: 1;
+  }
+
+  .buttonAnimation{
+    width: 130px;
+    height: 40px;
+    padding: 10px 25px;
+    border: 2px solid #000;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    background: #282340;
+    color: #fff;
+    line-height: 42px;
+    padding: 0;
+    border: none;
+  }
+
+  .buttonAnimation span {
+    position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  }
+  
+.buttonAnimation:before,
+.buttonAnimation:after {
+  
+  position: absolute;
+  content: "";
+  height: 0%;
+  width: 2px;
+  background: #282340;
+}
+.buttonAnimation:before {
+  
+  right: 0;
+  top: 0;
+  transition: all 500ms ease;
+}
+.buttonAnimation:after {
+  
+  left: 0;
+  bottom: 0;
+  transition: all 500ms ease;
+}
+.buttonAnimation:hover{
+  font-weight: 700;
+  color: #fecc3e;
+  background: transparent;
+}
+.buttonAnimation:hover:before {
+  
+  transition: all 500ms ease;
+  height: 100%;
+}
+.buttonAnimation:hover:after {
+  transition: all 500ms ease;
+  height: 100%;
+}
+.buttonAnimation span:before,
+.buttonAnimation span:after {
+  position: absolute;
+  content: "";
+  background: #282340;
+}
+.buttonAnimation span:before {
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: 2px;
+  transition: all 500ms ease;
+}
+.buttonAnimation span:after {
+  right: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  transition: all 500ms ease;
+}
+.buttonAnimation span:hover:before {
+  width: 100%;
+}
+.buttonAnimation span:hover:after {
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+
+  .navButtons {
+    /* Estilos adicionales para pantallas pequeñas */
+  }
+
+  .searchBar {
+    /* Estilos adicionales para pantallas pequeñas */
+  }
+
+  .rnmIcon {
+    /* Estilos adicionales para pantallas pequeñas */
+  }
+
+  .buttonAnimation {
+    /* Estilos adicionales para pantallas pequeñas */
+  }
+}

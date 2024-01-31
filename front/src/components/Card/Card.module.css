@@ -1,0 +1,211 @@
+/* main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.containerCard {
+    color: black;
+    border: 1.5px solid black;
+    border-radius: 20px; 
+    width: 200px;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    background-color: rgba(19, 19, 19, 0.651);
+}
+
+.image {
+    border-radius: 20px 20px 0px 0px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.data {
+  font-size: 15px;
+  color:rgb(250, 243, 233)
+} */
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  font-family: "Roboto", sans-serif;
+  
+}
+
+.card {
+  background-color: #282340ab;
+  border: 2px solid black;
+  width: 12rem;
+  height: 20rem;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  color: rgb(240, 240, 240);
+  box-shadow: 0 10px 30px 5px rgb(0, 0, 0);
+  
+}
+
+.card .img {
+  /* position: absolute; */
+  /* object-fit: cover ;
+  width: 100%; 
+  height: 100%; */
+  top: 0;
+  left: 0;
+  /* opacity: 0.9; */
+  /* transition: opacity 0.2s ease-out; */
+  transition: filter 2s ease-out;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.card .h2 {
+  position: absolute;
+  inset: auto 20px 30px 20px;
+  margin: 0;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: normal;
+  text-transform: uppercase;
+  color: white; 
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; 
+  transition: inset 0.3s 0.3s ease-out;
+}
+
+.card .p,
+.card .a {
+  
+  position: absolute;
+  opacity: 0;
+  max-width: 80%;
+  transition: opacity 0.3s ease-out;
+  color: rgb(255, 255, 255);
+}
+
+.card h3 {
+  border-radius: 20px;
+  background-color: rgba(36, 36, 36, 0.575);
+}
+
+.card .p {
+  inset: auto 20px 10px 30px;
+}
+
+.card .a {
+  inset: auto 20px 30px 30px;
+  color: inherit; 
+  text-decoration: none;
+}
+
+.card:hover .h2 {
+  inset: auto 20px 200px 30px;
+  transition: inset 0.3s ease-out;
+  color: rgb(0, 0, 0); 
+  text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff; 
+}
+
+.card:hover .p,
+.card:hover .a {
+  opacity: 1;
+  transition: opacity 0.5s 0.1s ease-in;
+}
+
+.card:hover .img {
+  transition: opacity 0.3s ease-in;
+  opacity: 1;
+  transition: filter 0.3s ease-in;
+  filter: blur(2px);
+  object-fit: cover ;
+  width: 100%; 
+  height: 100%;
+}
+
+.seeMore {
+  
+  font-size: 15px;
+  text-decoration: none;
+  position: relative;
+  color: #ffd725;
+  font-weight: 400;
+}
+
+.seeMore::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  border-radius: 4px;
+  background-color: #ffd725;
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .3s ease-in-out;
+  
+}
+
+.seeMore:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+  color: #ffd725;
+}
+
+
+.heart {
+    position: absolute;
+    top: -20px; 
+    left: -20px; 
+    background-color: transparent; 
+    border: none;
+  }
+
+  .close {
+    position: absolute;
+    top: 18px;
+    right: 16px;
+    background-color: transparent;
+    border: none;
+    width: 20px;
+    scale: 1;
+    transition: scale 0.3s ease-in-out;
+  }
+  .close:hover{
+    scale: 1.4;
+    transition: scale 0.3s ease-in-out;
+  }
+
+
+
+.popup {
+  user-select: none;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  font-weight: 500;
+  background-color: #282340; 
+  color: rgb(255, 255, 255);
+  animation: fadeInChangeColor 0.4s ease forwards; 
+  transform-origin: top left;
+}
+
+@keyframes fadeInChangeColor {
+  from {
+    background-color: rgba(0, 0, 0, 0.479); 
+  }
+  to {
+    background-color: #282340; 
+  }
+}
+
+

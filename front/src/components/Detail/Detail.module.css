@@ -1,0 +1,110 @@
+.container {
+    max-width: 960px;
+    border-radius: 32px;
+    border: 2px solid black;
+    background-color: rgba(240, 248, 255, 0.692);
+    box-shadow: 24px 24px 80px rgba(196, 196, 196, 0.1);
+    padding: 20px 20px 28px 20px;
+    box-sizing: border-box;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative; 
+  }
+
+  .back {
+    position: absolute; 
+    top: 10px; 
+    right: 10px;
+    z-index: 1; 
+  }
+  
+  @media (min-width: 576px) {
+    .container {
+      flex-direction: row;
+      align-items: center;
+      margin: 60px;
+      padding: 0px 32px 0px 32px;
+    }
+  }
+  
+  .img {
+    border: 2px solid black;
+    width: 100%;
+    max-height: 300px;
+    border-radius: 32px;
+    object-fit: cover;
+    margin-bottom: 18px;
+  }
+  
+  @media (min-width: 576px) {
+    .img {
+      width: 30%;
+      height: auto;
+      max-height: none;
+      min-height: 400px;
+      margin-bottom: 0;
+    }
+  }
+  
+  .cardDetails {
+    @media (min-width: 576px) {
+      width: 55%;
+      padding-left: 40px;
+    }
+  }
+  
+  .cardDetails {
+    display: block;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #222022;
+    margin-bottom: 6px;
+    text-align: left;
+  }
+  
+  @media (min-width: 576px) {
+    .cardDetails {
+      margin-bottom: 8px;
+    }
+  }
+  
+  .characterName {
+    font-size: 25px;
+    line-height: 1.4;
+    color: #222022;
+    padding: 0 4px;
+    margin-left: -4px;
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: normal;
+    max-width: 100%;
+    display: inline;
+  transform: translate(-50%, -50%);
+	letter-spacing:0.1em;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #000000;
+  text-shadow: 
+						6px 6px #fecc3e,
+						12px 12px #ffffff;
+  }
+
+
+  
+  .statusImage {
+    width: 10%;
+    position: relative;
+    top: 5px;
+  }
+
+  .characterInfo {
+    position: relative;
+    top: -60px;
+  }
+
+  .characterInfo p {
+    padding: 2px;
+    font-size: 20px;
+  }
