@@ -1,7 +1,7 @@
 import style from "./About.module.css"
 import github from "../../assets/github.png"
 import linkedin from "../../assets/linkedin.png"
-import profile from "../../../../../profile.jpg"
+import profile from "../../assets/profile.jpg"
 
 export default function About() {
    return (
