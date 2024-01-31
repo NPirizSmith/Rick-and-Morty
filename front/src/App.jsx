@@ -8,24 +8,23 @@ import About from './components/About/About';
 import Detail from './components/Detail/Detail';
 import Form from './components/Form/Form';
 import Favorites from './components/Favorites/Favorites';
-import loading from "../src/assets/rnmIcon.png"
-import style from "./App.css"
-axios.defaults.baseURL = 'http://localhost:3001/'
+import loading from "../src/assets/rnmIcon.png" 
+axios.defaults.baseURL = 'https://rick-and-morty-production-2f46.up.railway.app/'
 
 
 function App() {
- 
+  
   
    const [characters, setCharacters] = useState([]);
 
    const [access, setAccess] = useState (false);
    const [showLoading, setShowLoading] = useState(false);
-
+   const baseURL = axios.defaults.baseURL
    const login = async (userData) => {
      try {
        setShowLoading(true);
        const { email, password } = userData;
-       const URL = 'http://localhost:3001/rickandmorty/login/';
+       const URL = baseURL + '/rickandmorty/login/';
        const response = await axios(URL + `?email=${email}&password=${password}`);
        const data = response.data;
        const { access } = data;
@@ -51,7 +50,7 @@ const navigate = useNavigate()
 
    const onSearch = async (id)=> {
       try {
-         const URL = `http://localhost:3001/rickandmorty/character/${id}`
+         const URL = baseURL + `/rickandmorty/character/${id}`
          const response = await axios(URL);
          const { data } = response;
 
