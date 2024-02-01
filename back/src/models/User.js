@@ -21,11 +21,14 @@ module.exports = (sequelize, Favorite) => {
       }
    }, { timestamps: false });
 
-   User.belongsToMany(Favorite, {
-      through: 'user_favorite',
-      foreignKey: 'UserId',
-      otherKey: 'FavoriteId'
-   });
+   User.associate = () => {
+      const Favorite = require('./Favorite');
+      User.belongsToMany(Favorite, {
+         through: 'user_favorite',
+         foreignKey: 'UserId',
+         otherKey: 'FavoriteId'
+      });
+   };
 
    return User;
 };

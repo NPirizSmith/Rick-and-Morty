@@ -34,6 +34,7 @@ module.exports = (sequelize) => {
    }, { timestamps: false });
 
    Favorite.associate = () => {
+      const User = require('./User'); // Importa User aquí
       Favorite.belongsToMany(User, {
          through: 'user_favorite',
          foreignKey: 'FavoriteId',
