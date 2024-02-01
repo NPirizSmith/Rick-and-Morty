@@ -17,14 +17,12 @@ const Favorites = () => {
   const handleOrder = (e) => {
     const order = e.target.value;
     dispatch(orderCards(order));
-    setAux(true);
+    dispatch(clearFilter());
   };
 
   useEffect(() => {
-    if (aux) {
-      setAux(false);
-    }
-  }, [myFavorites, aux]);
+    dispatch(clearFilter());
+  }, [dispatch]);
 
   const handleFilter = (e) => {
     const filter = e.target.value;

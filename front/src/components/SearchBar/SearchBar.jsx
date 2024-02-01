@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import searchicon from "../../assets/searchicon.png";
 import style from "./SearchBar.modules.css";
 import random from "../../assets/random.png"
-import randomY from "../../assets/randomY.png"
+
 
 const formGroupStyle = {
   position: 'relative',
