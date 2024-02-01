@@ -1,41 +1,25 @@
-const { Favorite, User } = require("../DB_connection");
+const { Favorite } = require("../DB_connection");
 
 const postFav = async (req, res) => {
-    try {
+   try {
+      const { id, name, origin, status, image, species, gender } = req.body;
 
-        const { id, name, origin, status, image, species, gender, userId } = req.body;
+      if (!id || !name || !origin || !status || !image || !species || !gender) {
+         return res.status(401).json({ message: "Faltan datos" });
+      }
 
-        if (!id || !name || !origin || !status || !image || !species || !gender || !userId) {
-            return res.status(401).json({ message: "Faltan datos" });
-        }
+      const favChar = await Favorite.findOrCreate({ id, name, origin, status, image, species, gender });
 
-        const [favChar, created] = await Favorite.findOrCreate({
-            where: { id, name, origin, status, image, species, gender }
-        });
+      
+      // const allFavorites = await Favorite.findAll({ where: { id, name, origin, status, image, species, gender } });
+      // return res.json(allFavorites);
 
-        if (created) {
-            const user = await User.findByPk(userId);
-            if (!user) {
-                return res.status(404).json({ message: "Usuario no encontrado" });
-            }
-            await user.addFavorite(favChar);
-        }
+      const allFavorites = await Favorite.findAll();
+      return res.json(allFavorites);
 
-        const allFavorites = await Favorite.findAll({
-            include: [
-                {
-                    model: User,
-                    as: "users",
-                    attributes: ["id", "email"],
-                    through: { attributes: [] } 
-                }
-            ]
-        });
-
-        return res.json(allFavorites);
-    } catch (error) {
-        return res.status(500).json({ error: error.message });
-    }
+   } catch (error) {
+      return res.status(500).json({ error: error.message });
+   }
 };
 
 module.exports = postFav;
