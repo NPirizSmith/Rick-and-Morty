@@ -17,4 +17,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false}
    }, { timestamps: false });
+
+   User.associate = (models) => {
+      User.belongsToMany(models.Favorite, {
+         through: 'user_favorite',
+         foreignKey: 'userId',
+         otherKey: 'favoriteId' 
+      });
+   };
+
+   return User;
 };
