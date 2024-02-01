@@ -23,10 +23,10 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
 });
 
 // Ejecutar la función de los modelos.
-const models = {
-   Favorite: FavoriteModel(sequelize, models),
-   User: UserModel(sequelize),
- };
+const models = {};
+
+models.User = UserModel(sequelize);
+models.Favorite = FavoriteModel(sequelize, models);
 
 // Relación de modelos
 const { User, Favorite } = models;

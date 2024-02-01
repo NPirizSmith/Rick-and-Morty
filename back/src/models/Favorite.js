@@ -34,7 +34,7 @@ module.exports = (sequelize, models) => {
    }, { timestamps: false });
 
    Favorite.associate = () => {
-      Favorite.belongsToMany(models.User, {
+      Favorite.belongsToMany(User, {
          through: 'user_favorite',
          foreignKey: 'FavoriteId',
       });
