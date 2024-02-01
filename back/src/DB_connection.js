@@ -29,7 +29,8 @@ models.Favorite = FavoriteModel(sequelize, models);
 models.User = UserModel(sequelize, models);
 
 // Relación de modelos
-const { User, Favorite } = models;
+const User = models.User || require('./models/User');
+const Favorite = models.Favorite || require('./models/Favorite');
 
 User.belongsToMany(Favorite, { through: 'user_favorite' });
 Favorite.belongsToMany(User, { through: 'user_favorite' });

@@ -21,7 +21,6 @@ module.exports = (sequelize, Favorite) => {
       }
    }, { timestamps: false });
 
-   // Asociación con Favorite
    User.belongsToMany(Favorite, {
       through: 'user_favorite',
       foreignKey: 'UserId',
