@@ -22,13 +22,10 @@ module.exports = (sequelize) => {
    }, { timestamps: false });
 
    // Asociación con Favorite
-   User.associate = (models) => {
-      User.belongsToMany(models.Favorite, {
-         through: 'user_favorite',
-         foreignKey: 'userId',
-         otherKey: 'favoriteId'
-      });
-   };
-
+   User.belongsToMany(models.Favorite, {
+      through: 'user_favorite',
+      foreignKey: 'UserId',
+      otherKey: 'FavoriteId'
+   });
    return User;
 };
