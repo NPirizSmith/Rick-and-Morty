@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
-module.exports = (sequelize, Favorite) => {
-   const User = sequelize.define('User', {
+module.exports = (sequelize) => {
+   sequelize.define('User', {
       id: {
          type: DataTypes.INTEGER,
          allowNull: false,
@@ -11,24 +11,11 @@ module.exports = (sequelize, Favorite) => {
       email: {
          type: DataTypes.STRING,
          allowNull: false,
-         validate: {
-            isEmail: true,
-         }
+         isEmail: true,
       },
       password: {
          type: DataTypes.STRING,
-         allowNull: false
+         allowNull: false,
       }
    }, { timestamps: false });
-
-   User.associate = () => {
-      const Favorite = require('./Favorite');
-      User.belongsToMany(Favorite, {
-         through: 'user_favorite',
-         foreignKey: 'UserId',
-         otherKey: 'FavoriteId'
-      });
-   };
-
-   return User;
 };
