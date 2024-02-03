@@ -95,7 +95,18 @@ export default function Form({ login }) {
             )}
           </form>
         </div>
+        <div className={styles.userCredentials}>
+      <p>
+  Default credentials:
+  <br />
+  Email: Karley_Dach@jasper.info
+  <br />
+  Password: ckEGwEsx1bAa5wk
+</p>
+</div>
       </div>
+      
     </div>
+    
   );
 }

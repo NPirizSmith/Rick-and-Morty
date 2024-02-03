@@ -107,6 +107,13 @@
     font-weight: 600;
   }
 
+  .userCredentials {
+    padding-top: 2rem;
+    color: aliceblue;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+  }
+
   @media (max-width: 767px) {
     .formImg {
         top: 0px;
