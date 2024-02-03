@@ -15,8 +15,8 @@ export default (data) => {
     if (!emailRegexp.test(data.email)) {
         errors.e3 = "Enter a valid email";
     }
-    if(data.password.length < 6 || data.password.length > 14) {
-      errors.p1 = "Password must be between 6 and 14 characters"
+    if(data.password.length < 6 || data.password.length > 15) {
+      errors.p1 = "Password must be between 6 and 15 characters"
     }
     if(!/\d/.test(data.password)) {
       errors.p2 = "Password must have at least one number"
