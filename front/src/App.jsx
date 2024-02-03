@@ -9,36 +9,42 @@ import Detail from './components/Detail/Detail';
 import Form from './components/Form/Form';
 import Favorites from './components/Favorites/Favorites';
 import loading from "../src/assets/rnmIcon.png" 
+import { useDispatch } from 'react-redux';
 axios.defaults.baseURL = 'https://rick-and-morty-production-2f46.up.railway.app/'
-
+import { addFav } from './redux/actions';
 
 function App() {
- 
   
+  const dispatch = useDispatch();
    const [characters, setCharacters] = useState([]);
 
    const [access, setAccess] = useState (false);
    const [showLoading, setShowLoading] = useState(false);
 
    const login = async (userData) => {
-     try {
-       setShowLoading(true);
-       const { email, password } = userData;
-       const URL = 'rickandmorty/login/';
-       const response = await axios(URL + `?email=${email}&password=${password}`);
-       const data = response.data;
-       const { access } = data;
-       setAccess(data);
- 
-       setTimeout(() => {
-         setShowLoading(false);   
-         access && navigate('/home');
-       }, 4000);
-     } catch (error) {
-       setShowLoading(false);
-       window.alert('El usuario no se encuentra registrado');
-     }
-   }
+    try {
+      setShowLoading(true);
+      const { email, password } = userData;
+      const URL = 'rickandmorty/login/';
+      const response = await axios(URL + `?email=${email}&password=${password}`);
+      const data = response.data;
+      const { access, favorites } = data;
+
+      setAccess(access);
+
+      favorites.forEach((favorite) => {
+        dispatch(addFav(favorite));
+      });
+
+      setTimeout(() => {
+        setShowLoading(false);
+        access && navigate('/home');
+      }, 4000);
+    } catch (error) {
+      setShowLoading(false);
+      window.alert('El usuario no se encuentra registrado');
+    }
+  }
  
 
 const navigate = useNavigate()
@@ -89,14 +95,14 @@ const navigate = useNavigate()
   <div style={{
     position: 'relative',
    //  width: '100%',
-   //  height: '100vh',
+    height: '100vh',
     display: 'flex',
     alignItems: 'center',
-   //  justifyContent: 'center',
+    justifyContent: 'center',
     flexDirection: "column",
   }}>
     <img src={loading} className='fade-out  ' alt="Cargando..." style={{
-      width: '55%',
+      width: '70%',
       height: 'auto', 
       zIndex: '999999',
       position: "relative",
@@ -106,9 +112,10 @@ const navigate = useNavigate()
     <h1 className='fade-out' style={{
       color: "white",
       textShadow: "1px 1px 1px black",
+      fontSize: "2rem"
        }}>Loading<span>...</span></h1>
     <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/YouTube_loading_symbol_3_%28transparent%29.gif" className='fade-out' alt="Cargando..." style={{
-      width: "10%", 
+      // width: "10%", 
       height: '10%', 
       zIndex: '999999',
     }} />

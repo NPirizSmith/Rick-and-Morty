@@ -1,26 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addFav, removeFav } from "../../redux/actions";
 import { Link, useLocation } from "react-router-dom";
 import Heart from "react-animated-heart";
 import close from "../../assets/close.png";
 import style from "./Card.module.css";
 
-const Card = ({ id, name, status, species, gender, origin, image, onClose }) => {
+const Card = ({ id, name, status, species, gender, origin, image, onClose, isFavorite }) => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const myFavoritesNested = useSelector((state) => state.myFavorites);
-  const myFavorites = myFavoritesNested.flat();
 
-  // Utilizamos estado local para manejar la persistencia del corazón
-  const [isFav, setIsFav] = useState(() => {
-    // Recuperar el estado desde localStorage o false si no existe
-    const localStorageState = localStorage.getItem(`fav-${id}`);
-    return localStorageState ? JSON.parse(localStorageState) : false;
-  });
+  const [isFav, setIsFav] = useState(isFavorite);
 
   useEffect(() => {
-    // Guardar el estado en localStorage cuando cambia
     localStorage.setItem(`fav-${id}`, JSON.stringify(isFav));
   }, [id, isFav]);
 
@@ -31,7 +23,6 @@ const Card = ({ id, name, status, species, gender, origin, image, onClose }) => 
       await dispatch(addFav({ id, name, status, species, gender, origin, image }));
     }
 
-    // Toggle el estado local después de la acción Redux
     setIsFav((prevIsFav) => !prevIsFav);
   };
 

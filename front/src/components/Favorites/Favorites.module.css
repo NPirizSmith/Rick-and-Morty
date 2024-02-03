@@ -14,7 +14,7 @@
 }
 
 .favorites {
-    margin-top: 100px; 
+    margin-top: 150px; 
     max-width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -22,12 +22,14 @@
     gap: 20px; 
   }
 
+
   .order{
     position : absolute;
     top: 15%;
     left : 42%;
     transform :
     translate(-50%,-50%); 
+    z-index: 10;
   }
   .gender{
     position : absolute;
@@ -35,6 +37,7 @@
     left: 57%;
     transform :
     translate(-50%,-50%); 
+    z-index: 9;
   }
 
   .select select {
@@ -79,3 +82,26 @@
   .select:hover::after {
     color: #fecc3e;
   }
+
+  @media (max-width: 1200px) {
+.gender{
+  padding-left: 150px;
+}
+
+.order{
+  padding-right: 150px;
+}
+  }
+
+  @media (max-width: 350px) {
+    .gender{
+      padding-left: 100px;
+    }
+    .select{
+      width: 8em
+    }
+  
+    .order{
+      padding-right: 100px;
+    }
+      }

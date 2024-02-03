@@ -1,5 +1,5 @@
+
 .nav {
-  
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,6 +8,35 @@
   top: 0;
   right: 0;
   z-index: 999;
+}
+
+
+.menuButton {
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1;
+
+}
+
+
+
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px; 
+  right: 10px; 
+  background-color: #282340;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1000;
+}
+
+.mobileMenu a {
+  margin-bottom: 10px;
+  color: #fecc3e;
+  text-decoration: none;
+  font-size: 16px;
 }
 
   .navButtons {
@@ -36,7 +65,9 @@
     z-index: 1;
   }
 
+
   .buttonAnimation{
+    margin-right: 10px;
     width: 130px;
     height: 40px;
     padding: 10px 25px;
@@ -123,21 +154,26 @@
   width: 100%;
 }
 
-@media (max-width: 767px) {
-
+@media (max-width: 850px) {
   .navButtons {
-    /* Estilos adicionales para pantallas pequeñas */
+    display: none;
   }
 
-  .searchBar {
-    /* Estilos adicionales para pantallas pequeñas */
-  }
+ 
 
+  .menuButton {
+    display: block; 
+  }
+}
+@media (min-width: 850px) {
+  .mobileMenu{
+display: none;
+  }
+}
+
+@media (max-width: 400px) {
   .rnmIcon {
-    /* Estilos adicionales para pantallas pequeñas */
+    left: -2rem;
   }
 
-  .buttonAnimation {
-    /* Estilos adicionales para pantallas pequeñas */
-  }
 }

@@ -1,5 +1,7 @@
 
-
+.custom-input{
+  min-width: 100px;
+}
 .custom-input::placeholder {
   font-weight: 500;
   color: #3b3b3b;
@@ -15,4 +17,10 @@
   transform: scale(1.1);
   
   background-image: url("../../assets/randomY.png");
+}
+
+@media (min-width: 1200px) {
+  .custom-input{
+    min-width: 300px;
+  }
 }

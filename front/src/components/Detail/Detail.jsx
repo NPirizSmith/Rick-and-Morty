@@ -24,11 +24,11 @@ export default function Detail() {
   }, [id]);
 
   const getStatusImage = () => {
-    // Determina el estado del personaje
+
     const characterStatus = character.status;
     let statusImage;
 
-    // Asigna la imagen correspondiente según el estado
+
     if (characterStatus === "Alive") {
       statusImage = aliveImage;
     } else if (characterStatus === "Dead") {

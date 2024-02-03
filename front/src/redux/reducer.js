@@ -1,56 +1,66 @@
+import {
+  ADD_FAV,
+  FILTER_CARDS,
+  ORDER_CARDS,
+  REMOVE_FAV,
+} from "./action-types";
+
 const initialState = {
-    myFavorites: [],
-    allCharacters: []
-}
+  myFavorites: [],
+  allCharacters: [],
+  errors: false
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_FAV':
-      console.log('Adding character to favorites. New state:', {
+    case ADD_FAV: {
+      return { 
+        ...state, 
+        myFavorites: action.payload, 
+        allCharacters: action.payload,
+        errors: false
+      };
+    }
+    case REMOVE_FAV: {
+      return { 
+        ...state, 
         myFavorites: action.payload,
         allCharacters: action.payload,
-      });
-
+        errors: false
+      };
+    }
+    case 'ERROR':
+      return { 
+        ...state, 
+        errors: action.payload
+      }
+    case FILTER_CARDS: {
+      const filteredCharacter = state.allCharacters.filter(
+        (character) => character.gender === action.payload
+      );
       return {
         ...state,
-        myFavorites: action.payload,
-        allCharacters: action.payload,
+        myFavorites:
+          action.payload === "allCharacters"
+            ? [...state.allCharacters]
+            : filteredCharacter,
       };
-        
-        case 'REMOVE_FAV':
-          return { ...state,
-             myFavorites: action.payload, 
-            allCharacters: action.payload};
-
-            case "FILTER":
-                return {
-                  ...state,
-                  myFavorites: [...state.allCharacters.filter((character) => character.gender === action.payload)]
-                };
-
-                case "CLEAR":
-  return {
-    ...state,
-    myFavorites: state.allCharacters.slice(),
-  };
-
-                    
-
-
-        case "ORDER":
-            const orderCards = [...state.myFavorites];
-            if (action.payload === "A") {
-              orderCards.sort((a, b) => a.id - b.id);  // Orden ascendente
-            } else if (action.payload === "D") {
-              orderCards.sort((a, b) => b.id - a.id);  // Orden descendente
-            }
-            return {
-              ...state,
-              myFavorites: orderCards};
-
-        default: 
-            return {...state} 
     }
+    case ORDER_CARDS: {
+      const orderCharacterCopy = [...state.allCharacters];
+      return {
+        ...state,
+        myFavorites:
+          action.payload === "A"
+            ? orderCharacterCopy.sort((a, b) => a.id - b.id)
+            : orderCharacterCopy.sort((a, b) => b.id - a.id),
+      };
+    }
+    default:
+      return {
+        ...state,
+      };
+  }
 };
 
-export default reducer
+export default reducer;

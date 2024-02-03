@@ -26,14 +26,14 @@ export default function Form({ login }) {
     event.preventDefault();
 
     if (!userData.email || !userData.password) {
-      // Campos vacíos, muestra el mensaje de error
+
       setFormSubmitted(true);
       return;
     }
 
-    setFormSubmitted(false); // Reinicia el estado de formSubmitted
+    setFormSubmitted(false);
 
-    // Continuar con el proceso de inicio de sesión
+
     login(userData);
   };
 

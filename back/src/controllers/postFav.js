@@ -1,30 +1,34 @@
-const { Favorite } = require("../DB_connection");
+const { Favorite, User } = require("../DB_connection");
 
 const postFav = async (req, res) => {
-  try {
-    const { name, origin, status, image, species, gender } = req.body;
+   try {
+      const userId = req.params.userId;
+      const { id, name, origin, status, image, species, gender } = req.body;
 
-    if (!name || !origin || !status || !image || !species || !gender) {
-      return res.status(401).send("Faltan datos");
-    }
+      if (!id || !name || !origin || !status || !image || !species || !gender) {
+         return res.status(401).json({ message: "Faltan datos" });
+      }
 
-    await Favorite.findOrCreate({
-      where: {
-        name,
-        origin,
-        status,
-        image,
-        species,
-        gender,
-      },
-    });
+      // Busca o crea el personaje favorito
+      const [favChar, created] = await Favorite.findOrCreate({
+         where: { id, name, origin, status, image, species, gender }
+      });
 
-    const allFavorite = await Favorite.findAll()
-    return res.status(200).json(allFavorite);
+      // Asocia el personaje favorito al usuario
+      const user = await User.findByPk(userId); // Reemplaza req.userId con el identificador del usuario actual
 
-  } catch (error) {
-    return res.status(500).json(error.message);
-  }
+      if (user) {
+         await user.addFavorite(favChar);
+      } else {
+         console.error('Usuario no encontrado al intentar agregar un favorito');
+      }
+
+      // Obtiene todos los favoritos
+      const allFavorites = await Favorite.findAll();
+      return res.json(allFavorites);
+   } catch (error) {
+      return res.status(500).json({ error: error.message });
+   }
 };
 
 module.exports = postFav;

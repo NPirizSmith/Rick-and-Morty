@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 export default function Cards({ characters, onClose }) {
   const myFavorites = useSelector(state => state.myFavorites);
   console.log('myFavorites in Cards component:', myFavorites);
-  // Obtener los IDs de los personajes favoritos
   const favoriteIds = myFavorites.map(favorite => favorite.id);
 
   const isFavorite = (id) => {

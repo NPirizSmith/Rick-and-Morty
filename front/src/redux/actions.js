@@ -1,24 +1,21 @@
+import { ADD_FAV, FILTER_CARDS, ORDER_CARDS, REMOVE_FAV } from "./action-types";
 import axios from "axios";
 
+const ENDPOINT = "/rickandmorty/fav";
+//actions-creator
 export const addFav = (character) => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
-      const endpoint = '/rickandmorty/fav';
-      const response = await axios.post(endpoint, character);
-      const data = response.data;
-
-      // Obtén la lista actual de favoritos del estado
-      const currentFavorites = getState().myFavorites;
-
-      // Agrega el nuevo personaje a la lista actual
-      const updatedFavorites = [...currentFavorites, data];
-
-      dispatch({
-        type: 'ADD_FAV',
-        payload: updatedFavorites,
+      const { data } = await axios.post(ENDPOINT, character);
+      return dispatch({
+        type: ADD_FAV,
+        payload: data,
       });
     } catch (error) {
-      console.error('Error adding character to favorites:', error);
+      return dispatch({
+        type: "ERROR",
+        payload: error.message,
+      });
     }
   };
 };
@@ -26,37 +23,34 @@ export const addFav = (character) => {
 export const removeFav = (id) => {
   return async (dispatch) => {
     try {
-      const endpoint = `/rickandmorty/fav/${id}`;
-      const response = await axios.delete(endpoint);
-      const data = response.data;
-
-      dispatch({
-        type: 'REMOVE_FAV',
+      const { data } = await axios.delete(`${ENDPOINT}/${id}`);
+      return dispatch({
+        type: REMOVE_FAV,
         payload: data,
       });
     } catch (error) {
-      console.error('Error removing character from favorites:', error);
+      return dispatch({
+        type: "ERROR",
+        payload: error.message,
+      });
     }
   };
 };
 
-export const filterCards = (gender)=> {
-    return{
-    type: "FILTER",
-    payload: gender
-}
-}
+export const filterCards = (genders) => {
+  return {
+    type: FILTER_CARDS,
+    payload: genders,
+  };
+};
 
-export const orderCards = (orden)=> {
-    return{
-        type:"ORDER",
-        payload: orden
-    }
-}
+export const orderCards = (order) => {
+  return {
+    type: ORDER_CARDS,
+    payload: order,
+  };
+};
 
 export const clearFilter = () => ({
-    type: "CLEAR"
-  });
-
-  
-
+  type: "CLEAR"
+});
