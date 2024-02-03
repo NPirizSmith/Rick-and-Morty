@@ -1,0 +1,40 @@
+name: 🧼 Clean up deployments
+
+on:
+  workflow_run:
+    workflows: ["Your-Deploy-Workflow-Name"]
+    types:
+      - completed
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: 🎟 Get GitHub App token
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: deployments } = await github.request('GET /repos/:owner/:repo/deployments', {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+
+            const deploymentIds = deployments.map(deployment => deployment.id);
+            const latestDeploymentId = Math.max(...deploymentIds);
+
+            // Remove all deployments except the latest one
+            for (const deploymentId of deploymentIds) {
+              if (deploymentId !== latestDeploymentId) {
+                await github.request('DELETE /repos/:owner/:repo/deployments/:deployment_id', {
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  deployment_id: deploymentId,
+                });
+              }
+            }
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
